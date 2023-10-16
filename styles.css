@@ -1,0 +1,130 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.4rem;
+    padding: 80px;
+    background: #6A84ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.laptop {
+    position: relative;
+    width: 80rem; /* Define a width for the laptop. Adjust this to your preference */
+    margin: auto;
+}
+
+
+.laptop__brand {
+    position: absolute;
+    bottom: 2%; /* Adjust as necessary */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa; /* Adjust the color as necessary */
+    font-weight: 75px;
+    font-size: 1.5rem; /* Adjust size as necessary */
+}
+
+
+.laptop__camera {
+    position: absolute;
+    top: 2%; /* Adjust as necessary */
+    left: 50%;
+    transform: translateX(-50%);
+    width: .5rem; /* Adjust size as necessary */
+    height: .5rem; /* Adjust size as necessary */
+    border-radius: 50%;
+    background-color: #333; /* Adjust color as necessary */
+    border: 2px solid #3c3939; /* Adjust color and size as necessary */
+}
+
+.laptop__screen {
+    position: relative;
+    height: 48rem;
+    z-index: 1;
+    width: 92%; /* Ensure the screen takes the full width of the laptop */
+    padding: 3%;
+    border-radius: 2rem;
+    background: #ecf1f7;
+    background-image: linear-gradient(to bottom, #333, #111);
+    box-shadow: 0 .1rem 0 #cfcfcf;
+    border: 2px solid #ccc;
+}
+
+.terminal {
+    width: 95%; /* Adjust this width to ensure it fits within the padding of laptop__screen */
+    height: 90%; /* Adjust this height to ensure the terminal fits within the screen */
+    border-radius: 10px;
+    background-color: #4b4848;
+    padding: 20px;
+    overflow: auto; /* Allow scrolling if the content exceeds the height */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    font-size: 1.2em;
+    white-space: pre-line;
+}
+
+.laptop__bottom {
+    position: relative;
+    z-index: 1;
+    width: 100%; /* Ensure the bottom part takes the full width of the laptop */
+    height: .7rem;
+    background: #e9eff5;
+    background-image: linear-gradient(to right, #d2dde9 0%, #f9fcff 15%, #e5ebf2 40%, #e5ebf2 60%, #f9fcff 85%, #d2dde9 100%);
+}
+
+.laptop__bottom::before {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    height: .7rem;
+    border-radius: 0 0 .2rem .2rem;
+    background: #f6f9fc;
+    background-image: linear-gradient(to right, #c3cfdb 0%, #f6f9fc 10%, #f6f9fc 90%, #c3cfdb 100%);
+    content: " ";
+}
+
+.laptop__under {
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    width: 50%;
+    height: 1.5rem;
+    background: #e2e8f0;
+    background-image: linear-gradient(to bottom, #e2e8f0, #bec7d1);
+}
+
+.laptop__under::after, .laptop__under::before {
+    position: absolute;
+    top: 0%;
+    right: 100%;
+    bottom: 0;
+    width: 50%;
+    border-bottom-left-radius: 100%;
+    background: inherit;
+    content: " ";
+}
+
+.laptop__under::after {
+    right: auto;
+    left: 100%;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 0;
+}
+
+.laptop__shadow {
+    position: absolute;
+    right: -10%;
+    bottom: -2.5rem;
+    left: -10%;
+    z-index: 0;
+    height: 2rem;
+    background: radial-gradient(ellipse closest-side,#000,transparent);
+    opacity: 0.5;
+}
