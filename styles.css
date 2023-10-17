@@ -20,17 +20,6 @@ body {
     
 }
 
-
-.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000; /* ensure it's above other elements */
-    background-color: #4b4848; /* or whatever your terminal's background color is */
-}
-
 .laptop {
     position: relative; /* Ensure it's positioned relative so z-index works */
     z-index: 10; /* This ensures the laptop is always above the table */
@@ -79,18 +68,30 @@ body {
 }
 
 .terminal {
-    width: 95%; /* Adjust this width to ensure it fits within the padding of laptop__screen */
-    height: 90%; /* Adjust this height to ensure the terminal fits within the screen */
+    width: 95%; 
+    height: 90%; 
     border-radius: 10px;
     background-color: #4b4848;
     padding: 20px;
-    overflow: auto; /* Allow scrolling if the content exceeds the height */
+    overflow: auto; 
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: center; /* This centers the terminal vertically within the laptop screen */
+    justify-content: center; /* This centers the terminal horizontally within the laptop screen */
     color: white;
     font-size: 1.2em;
     white-space: pre-line;
+    transition: all 1.5s;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    align-items: flex-start; /* Reset to default */
+    justify-content: flex-start; /* Reset to default */
 }
 
 .laptop__bottom {
@@ -248,4 +249,3 @@ body {
     text-align: center;
     z-index: 100; /* To ensure it's above other elements */
 }
-

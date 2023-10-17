@@ -57,39 +57,29 @@ passwordInput.addEventListener('keydown', function(event) {
         if (passwordInput.value === correctPassword) {
             introText.push('> Access granted! Welcome back, Sebastian!', '> Redirecting to Portfolio ... ');
 
-            typeText().then(function() {
-                const terminalElement = document.querySelector('.terminal');
-                terminalElement.classList.add('fullscreen');
+            typeText();
 
-                setTimeout(() => {
-                    terminalElement.innerHTML = '';
-                }, 1000);
-            });
+            setTimeout(() => {
+                const terminalElement = document.querySelector('.terminal');
+                terminalElement.style.position = 'fixed';
+                terminalElement.style.top = '0';
+                terminalElement.style.left = '0';
+                terminalElement.style.width = '100%';
+                terminalElement.style.height = '100%';
+                terminalElement.style.zIndex = '9999';
+            }, 5000);
 
             passwordWrapper.remove();
         } else if (passwordInput.value === easterEgg) {
             introText.push('> YOU FOUND THE EASTER EGG 🐣, now enter the password:');
-            passwordWrapper.remove();
+            appendPasswordInput();
+            typeText();
         } else {
             introText.push('> Wrong password. Try again:');
             appendPasswordInput();
+            typeText();
         }
-        typeText();
     }
 });
-function typeText() {
-    if (idx < introText[line].length) {
-        terminalContent.textContent += introText[line][idx];
-        idx++;
-        setTimeout(typeText, 30);
-    } else if (line < introText.length - 1) {
-        terminalContent.textContent += '\n';
-        line++;
-        idx = 0;
-        setTimeout(typeText, 200);
-    } else if (line === introText.length - 1) {
-        appendPasswordInput(); // Only append the password input after the password prompt is typed out
-    }
-}
 
 typeText();
