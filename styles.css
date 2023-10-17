@@ -19,6 +19,36 @@ body {
 
     
 }
+.element {
+    transition: property duration timing-function delay;
+}
+
+.hidden-screen {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:  #4b4848;
+    color: #fff;
+    z-index: 9999; /* To ensure it appears on top of everything else */
+    transition: opacity 0.5s ease-out;
+}
+
+.hidden-screen.show {
+    opacity: 1;
+    pointer-events: auto; /* Allows interaction with the div */
+}
+
+.hidden-screen .taskbar {
+    position: fixed; /* Fixed position so it stays at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Make it span the entire width */
+    z-index: 1000; /* Ensure it's above the content but below pop-ups etc. */
+    border-radius: 0;
+}
 
 .laptop {
     position: relative; /* Ensure it's positioned relative so z-index works */
@@ -68,18 +98,21 @@ body {
 }
 
 .terminal {
-    width: 95%; 
-    height: 90%; 
-    border-radius: 10px;
+    width: 94.5%; 
+    height: 85%; 
     background-color: #4b4848;
     padding: 20px;
-    overflow: auto; 
+    overflow: auto;
     display: flex;
-    align-items: center; /* This centers the terminal vertically within the laptop screen */
-    justify-content: center; /* This centers the terminal horizontally within the laptop screen */
+    align-items: center;
+    justify-content: flex-start;
     color: white;
     font-size: 1.2em;
     white-space: pre-line;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     transition: all 1.5s;
 }
 
@@ -87,12 +120,14 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    align-items: flex-start; /* Reset to default */
-    justify-content: flex-start; /* Reset to default */
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    border-radius: 0; /* Remove rounded corners when in fullscreen */
+    align-items: flex-start;
+    justify-content: flex-start;
 }
+
 
 .laptop__bottom {
     position: relative;
@@ -210,23 +245,6 @@ body {
     background: #24AF34; /* Slightly darker shade on hover */
 }
 
-.terminal {
-    width: 94.5%; 
-    height: 85%; 
-    background-color: #4b4848;
-    padding: 20px;
-    overflow: auto;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: white;
-    font-size: 1.2em;
-    white-space: pre-line;
-    border-top-left-radius: 0;      /* No top-left border-radius */
-    border-top-right-radius: 0;     /* No top-right border-radius */
-    border-bottom-left-radius: 10px;  /* Only bottom border-radius */
-    border-bottom-right-radius: 10px; /* Only bottom border-radius */
-}
 
 
 .post_it {
@@ -248,4 +266,19 @@ body {
     justify-content: center;
     text-align: center;
     z-index: 100; /* To ensure it's above other elements */
+}
+
+#portfolio {
+    display: none; /* It's hidden by default */
+    width: 100%;
+    height: 100vh;
+    
+    color: #333;
+    font-size: 2em;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 1s;
 }

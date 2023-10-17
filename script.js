@@ -61,19 +61,23 @@ passwordInput.addEventListener('keydown', function(event) {
 
             setTimeout(() => {
                 const terminalElement = document.querySelector('.terminal');
-                terminalElement.style.position = 'fixed';
-                terminalElement.style.top = '0';
-                terminalElement.style.left = '0';
-                terminalElement.style.width = '100%';
-                terminalElement.style.height = '100%';
-                terminalElement.style.zIndex = '9999';
+                const portfolioElement = document.getElementById('portfolio');
+
+                // Hide the terminal
+                terminalElement.style.display = 'none';
+
+                // Display the portfolio
+                portfolioElement.style.display = 'block';
+
             }, 5000);
 
             passwordWrapper.remove();
+
         } else if (passwordInput.value === easterEgg) {
             introText.push('> YOU FOUND THE EASTER EGG 🐣, now enter the password:');
             appendPasswordInput();
             typeText();
+
         } else {
             introText.push('> Wrong password. Try again:');
             appendPasswordInput();
