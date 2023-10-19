@@ -2,6 +2,16 @@ const terminalContent = document.getElementById('terminal-content');
 const passwordInput = document.createElement('input');
 const passwordWrapper = document.createElement('div');
 
+const portfolioContent = document.getElementById('portfolio-content');
+const portfolioInput = document.getElementById('portfolio-input');
+const closeButton = document.querySelector('.taskbar .close');
+const minimizeButton = document.querySelector('.taskbar .minimize');
+const laptopScreen = document.querySelector('.laptop__screen');
+
+// Close button event
+
+
+
 // Set the password input type and style
 passwordInput.type = 'password';
 passwordInput.style.border = 'none';
@@ -22,7 +32,7 @@ const introText = [
     '> Studying: Computer Science @ Rutgers University',
     '> Expected Graduation: Fall 2023', 
     '> Aspiring Software Engineer / Full Stack Developer', 
-    '> Enter the password : '
+    '> Enter password to learn more : '
 ];
 
 const correctPassword = "password";
@@ -55,7 +65,7 @@ function appendPasswordInput() {
 passwordInput.addEventListener('keydown', function(event) {
     if (event.key === "Enter") {
         if (passwordInput.value === correctPassword) {
-            introText.push('> Access granted! Welcome back, Sebastian!', '> Redirecting to Portfolio ... ');
+            introText.push('> Access granted!', '> Redirecting to Portfolio ... ');
 
             typeText();
 
@@ -84,6 +94,92 @@ passwordInput.addEventListener('keydown', function(event) {
             typeText();
         }
     }
+});
+
+let currentOutput = "";
+
+function typeOutput() {
+    if (currentOutput.length > 0) {
+        portfolioContent.textContent += currentOutput.charAt(0);
+        currentOutput = currentOutput.slice(1);
+        setTimeout(typeOutput, 30);
+    }
+}
+
+portfolioInput.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        const command = portfolioInput.value.trim().toLowerCase();
+        
+        switch(command) {
+            case 'about':
+                currentOutput = `
+                > 👋 About Me
+                > 
+                > Hello! I'm Sebastian Tan. Based in Oradell, NJ, I'm on a journey to become a leading name in the Software Engineering and Full-Stack Development realm. Currently in the final phases of my B.A. in Computer Science at Rutgers University, I'm enriching my knowledge palette with a plethora of subjects like AI, Systems Programming, and more.
+                > 
+                > 🛠️ Programming Languages / Software
+                > 
+                > Proficient in Python, C++, HTML/CSS, and JavaScript and have a good grip on C and Java as well. Whether it's Windows, Linux, or Mac, I comfortably navigate through any operating system.
+                > 
+                > 🚀  Professional Experience
+                > 
+                > At The Coding Place in Leonia, NJ, my role as a Coding Instructor isn't just a job - it's a mission. I believe in fostering a dynamic learning environment that transcends traditional teaching. From beginners to those ready to deep dive, I'm here to guide, ensuring each one harnesses their coding potential.
+                > 
+                > 🎨 A Bit More About Me
+                > 
+                > When I'm not lost in the world of codes and algorithms, you'll find me indulging in art, grooving to some tunes, or getting competitive with sports. These hobbies are more than just pastimes; they're the fuel to my creativity and drive in the professional world.
+                `;
+                break;
+            case 'projects':
+                currentOutput = '> Projects section content here...';
+                break;
+            case 'resume':
+                currentOutput = '> Resume content here...';
+                break;
+            case 'socials':
+                currentOutput = `
+                > 🔗 My Social Media & Professional Links
+                > 
+                > 🌐 LinkedIn: linkedin.com/in/sebtan
+                > 
+                > 📁 GitHub: github.com/SebTangent
+                > 
+                > 📧 Email: sebyanuardy@gmail.com
+                > 
+                > 📞 Contact: (862) 596-2522
+                > 
+                > Feel free to copy any link to connect, collaborate, or just chat. I'm always open to new opportunities and discussions.
+                `;
+            
+                break;
+            default:
+                currentOutput = `> Command "${command}" not recognized. Try again.`;
+                break;
+        }
+
+        // Append the user's command WITHOUT the prompt
+        portfolioContent.textContent += `\nuser@SebBookPro :$ ${command}\n`; 
+        typeOutput();  // Call the function to start typing the output
+
+        // Clear the input field
+        portfolioInput.value = '';
+
+        // Automatically scroll to the bottom after adding content
+        portfolioContent.scrollTop = portfolioContent.scrollHeight;
+    }
+});
+
+closeButton.addEventListener('click', function() {
+    const portfolioElement = document.getElementById('portfolio');
+    portfolioElement.style.display = 'none';
+    laptopScreen.style.display = 'block';
+});
+
+// Minimize button event
+minimizeButton.addEventListener('click', function() {
+    const portfolioElement = document.getElementById('portfolio');
+    portfolioElement.style.display = 'none';
+    laptopScreen.style.display = 'block';
 });
 
 typeText();
